@@ -100,8 +100,7 @@ def constructBayesNet(gameState):
         for obsPos in gameState.getHouseWalls(housePos):
             obsVar = OBS_VAR_TEMPLATE % obsPos
             obsVars.append(obsVar)
-            edges.append((FOOD_HOUSE_VAR, obsVar))
-            edges.append((GHOST_HOUSE_VAR, obsVar))
+            edges.extend([(var, obsVar) for var in HOUSE_VARS])
             variableDomainsDict[obsVar] = NO_OBS_VAL
 
     variables = [X_POS_VAR, Y_POS_VAR] + HOUSE_VARS + obsVars
